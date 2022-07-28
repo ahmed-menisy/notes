@@ -4,6 +4,19 @@
 $mainColor: #343a40;
 $fontMon: "Mochiy Pop One", sans-serif;
 $fontTaj: "Tajawal", sans-serif;
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: #eee;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $mainColor;
+}
+::selection {
+  background-color: $mainColor !important;
+  color: #fff !important;
+}
 body {
   min-height: 100vh;
  
@@ -105,4 +118,8 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+.dropdown-menu[data-bs-popper] {
+  left: -60px;
+  min-width: 8rem;
 }
