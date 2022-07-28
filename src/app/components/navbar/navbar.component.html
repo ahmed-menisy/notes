@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-expand">
+  <div class="container">
+    <a class="navbar-brand text-reset fs-4"
+      ><i class="fa-solid fa-note-sticky"></i> Notes</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <span *ngIf="isLogin" class="badge text-bg-secondary rounded-2">{{ userName }}</span>
+          <span *ngIf="isLogin" class="btn-out ms-2" (click)="logOut()"
+            ><i class="fa-solid fa-right-from-bracket fa-xl"></i
+          ></span>
+        </li>
+        <li class="nav-item dropdown" *ngIf="!isLogin">
+          <a
+            class="nav-link dropdown-toggle text-reset fs-5"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Menu
+          </a>
+          <ul class="dropdown-menu p-0">
+            <li>
+              <a
+                class="dropdown-item text-reset"
+                routerLink="signin"
+                routerLinkActive="bg-secondary"
+                >SingIn</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item text-reset"
+                routerLink="signup"
+                routerLinkActive="bg-secondary"
+                >SignUp</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,79 @@
+<section id="signIn" class="sign-in">
+  <div class="w-75 position-absolute top-50 start-50 translate-middle">
+    <form action="" [formGroup]="signInForm" (ngSubmit)="subSignIn(signInForm)">
+      <p class="alert alert-danger" *ngIf="msgError">{{ msgError }}</p>
+      <div class="row gy-2">
+        <div class="col-12">
+          <div class="form-data">
+            <label for="email" class="form-label">Email</label>
+            <input
+              formControlName="email"
+              type="email"
+              id="email"
+              class="form-control"
+              placeholder=" "
+            />
+          </div>
+          <div
+            class="msg-reg"
+            *ngIf="
+              signInForm.get('email')?.errors &&
+              signInForm.get('email')?.touched
+            "
+          >
+            <p
+              class="alert alert-danger p-0"
+              *ngIf="signInForm.get('email')?.getError('required')"
+            >
+              E-mail Required
+            </p>
+            <p
+              class="alert alert-danger p-0"
+              *ngIf="signInForm.get('email')?.getError('email')"
+            >
+              E-mail Formate InValid
+            </p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-data">
+            <label for="password" class="form-label">Password</label>
+            <input
+              formControlName="password"
+              type="password"
+              id="password"
+              class="form-control"
+              placeholder=" "
+            />
+          </div>
+          <div
+            class="msg-reg"
+            *ngIf="
+              signInForm.get('password')?.errors &&
+              signInForm.get('password')?.touched
+            "
+          >
+            <ul class="alert alert-danger">
+              <li>Minimum eight and maximum 10 characters</li>
+              <li>at least one uppercase letter</li>
+              <li>one lowercase letter</li>
+              <li>one number and one special character</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        [ngClass]="{
+          'btn w-100 mt-3 text-uppercase': true,
+          'btn-secondary': !isSignIn,
+          'btn-danger': isSignIn
+        }"
+        [disabled]="signInForm.invalid"
+      >
+        <span *ngIf="!isSignIn"> SignIn</span>
+        <span *ngIf="isSignIn"> Wait...</span>
+      </button>
+    </form>
+  </div>
+</section>
