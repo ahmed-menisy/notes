@@ -24,9 +24,12 @@ export class SignInComponent implements OnInit {
   });
   msgError!: string;
   isSignIn: boolean = false;
+  isShow:boolean = false;
+  type:string = 'password'
   ngOnInit(): void {
     $('#signIn').particleground();
   }
+  // -----------------------  Sign In
   subSignIn(dataForm: FormGroup): void {
     this.isSignIn = true;
     console.log(dataForm);
@@ -66,5 +69,14 @@ export class SignInComponent implements OnInit {
         this.isSignIn = false;
       },
     });
+  }
+  // show and hide password
+  show():void {
+    this.isShow = true;
+    this.type = 'text'
+  }
+  hidde():void {
+    this.isShow = false;
+    this.type = 'password'
   }
 }

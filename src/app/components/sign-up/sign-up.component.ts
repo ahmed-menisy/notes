@@ -11,6 +11,9 @@ declare var $: any;
 })
 export class SignUpComponent implements OnInit {
   constructor(private _AuthService: AuthService, private _Router: Router) {}
+  isSignIn: boolean = false;
+  isShow: boolean = false;
+  type: string = 'password';
   signUpForm: FormGroup = new FormGroup({
     first_name: new FormControl(null, [
       Validators.required,
@@ -38,10 +41,12 @@ export class SignUpComponent implements OnInit {
     ]),
   });
   msgError!: string;
-  isRegister:boolean = false;
+  isRegister: boolean = false;
   ngOnInit(): void {
     $('#signUp').particleground();
   }
+
+  // -----------------------  Sign Up
   subSignUp(dataForm: FormGroup): void {
     this.isRegister = true;
     console.log(dataForm);
@@ -51,11 +56,24 @@ export class SignUpComponent implements OnInit {
         if (response.message === 'success') {
           this._Router.navigate(['/signin']);
         } else {
-          this.msgError = response.message.slice(response.message.lastIndexOf(':')+1);
+          this.msgError = response.message.slice(
+            response.message.lastIndexOf(':') + 1
+          );
         }
-      },complete:()=> {
+      },
+      complete: () => {
         this.isRegister = false;
-      }
+      },
     });
+  }
+
+  // show and hide password
+  show(): void {
+    this.isShow = true;
+    this.type = 'text';
+  }
+  hidde(): void {
+    this.isShow = false;
+    this.type = 'password';
   }
 }

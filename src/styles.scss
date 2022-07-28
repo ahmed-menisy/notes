@@ -33,6 +33,9 @@ body {
   .dropdown-menu {
     cursor: pointer;
   }
+  :is(.btn-show,.btn-hide) {
+    cursor: pointer;
+  }
 }
 .lds-roller {
   display: inline-block;

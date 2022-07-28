@@ -7,19 +7,23 @@
           <div class="form-data">
             <label for="email" class="form-label">Email</label>
             <input
+              #input
               formControlName="email"
               type="email"
               id="email"
-              class="form-control"
+              autocomplete="off"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  signInForm.get('email')?.invalid && input.value.length > 0,
+                'is-valid': signInForm.get('email')?.valid
+              }"
               placeholder=" "
             />
           </div>
           <div
             class="msg-reg"
-            *ngIf="
-              signInForm.get('email')?.errors &&
-              signInForm.get('email')?.touched
-            "
+            *ngIf="signInForm.get('email')?.invalid && input.value.length > 0"
           >
             <p
               class="alert alert-danger p-0"
@@ -38,22 +42,44 @@
         <div class="col-12">
           <div class="form-data">
             <label for="password" class="form-label">Password</label>
-            <input
-              formControlName="password"
-              type="password"
-              id="password"
-              class="form-control"
-              placeholder=" "
-            />
+            <div class="password-filed position-relative">
+              <input
+                formControlName="password"
+                [type]="type"
+                id="password"
+                #input2
+                autocomplete="off"
+                [ngClass]="{
+                  'form-control ps-4 ': true,
+                  'is-invalid':
+                    signInForm.get('password')?.invalid &&
+                    input2.value.length > 0,
+                  'is-valid': signInForm.get('password')?.valid
+                }"
+                placeholder=" "
+              />
+              <i
+                *ngIf="!isShow"
+                (click)='show()'
+                tabindex="-1"
+                class="btn-show fa-solid fa-eye fa-sm text-secondary position-absolute ms-1 start-0 top-50 translate-middle-y"
+              ></i>
+              <i
+                *ngIf="isShow"
+                (click)='hidde()'
+                tabindex="-1"
+                class="btn-hide fa-solid fa-eye-slash fa-sm text-secondary position-absolute ms-1 start-0 top-50 translate-middle-y"
+              ></i>
+            </div>
           </div>
           <div
             class="msg-reg"
             *ngIf="
-              signInForm.get('password')?.errors &&
-              signInForm.get('password')?.touched
+              signInForm.get('password')?.invalid && input2.value.length > 0
             "
           >
             <ul class="alert alert-danger">
+              <li>Password Like This: Mohamed11@</li>
               <li>Minimum eight and maximum 10 characters</li>
               <li>at least one uppercase letter</li>
               <li>one lowercase letter</li>
