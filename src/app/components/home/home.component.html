@@ -24,7 +24,7 @@
       placeholder="Search..."
     />
     <!-- Home Area -->
-    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 gy-3 note-container ">
+    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 gy-3 note-container">
       <div
         *ngFor="let note of notesList | search: termSearch; trackBy: notes"
         class="col"
@@ -33,31 +33,36 @@
           <div class="d-flex justify-content-between card-header">
             <h2
               [ngStyle]="{
-               'font-size.px': note.title.length <12 ? '14' : '12'
+                'font-size.px': note.title.length < 12 ? '14' : '12'
               }"
             >
               {{ note.title }}
             </h2>
-            <div class="dropdown p-2">
+            <div class="dropdown">
               <span
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                class="px-2 btn-dropdown"
               >
                 <i class="fa-solid fa-ellipsis-vertical"></i>
               </span>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu p-0 bg-light  bg-gradient shadow">
                 <li>
-                  <a class="dropdown-item" (click)="deleteNote(note)">Delete</a>
+                  <a
+                    class="dropdown-item hstack justify-content-between text-danger"
+                    (click)="deleteNote(note)"
+                    >Delete <i class="fa-solid fa-trash-can"></i
+                  ></a>
                 </li>
                 <li>
                   <a
-                    class="dropdown-item"
+                    class="dropdown-item hstack justify-content-between text-warning"
                     data-bs-toggle="modal"
                     data-bs-target="#addNoteModal"
                     (click)="updateShowData(noteForm, note)"
-                    >Update</a
-                  >
+                    >Update <i class="fa-solid fa-pen-to-square"></i
+                  ></a>
                 </li>
               </ul>
             </div>

@@ -1,0 +1,8 @@
+:host {
+  .btn-dropdown {
+   transition: color .3s linear;
+    &:hover {
+      color: #09c;
+    }
+  }
+}

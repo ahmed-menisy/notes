@@ -194,6 +194,13 @@ export class HomeComponent implements OnInit {
       next: (response) => {
         console.log(response);
         if (response.message === 'updated') {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your Note has been Updated',
+            showConfirmButton: false,
+            timer: 1500
+          })
           this.getUserNotes();
           this.noteForm.reset();
           $('#addNoteModal').modal('hide');
