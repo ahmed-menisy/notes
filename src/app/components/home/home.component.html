@@ -1,5 +1,6 @@
 <section class="profile">
   <div class="container py-5">
+    <!-- Button Add And Delete All -->
     <div class="hstack justify-content-between pb-4">
       <button class="btn btn-danger btn-sm" (click)="deleteAll()">
         Delete All
@@ -15,13 +16,15 @@
       </button>
     </div>
     <p class="alert alert-info" *ngIf="msgData">{{ msgData }}</p>
+    <!-- Input Search -->
     <input
       [(ngModel)]="termSearch"
       type="search"
       class="form-control form-control-sm w-50 mx-auto mb-4"
       placeholder="Search..."
     />
-    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 gy-3 note-container">
+    <!-- Home Area -->
+    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 gy-3 note-container ">
       <div
         *ngFor="let note of notesList | search: termSearch; trackBy: notes"
         class="col"
@@ -30,12 +33,12 @@
           <div class="d-flex justify-content-between card-header">
             <h2
               [ngStyle]="{
-               'font-size.px': note.title.length <12 ? '12' : '10'
+               'font-size.px': note.title.length <12 ? '14' : '12'
               }"
             >
               {{ note.title }}
             </h2>
-            <div class="dropdown">
+            <div class="dropdown p-2">
               <span
                 type="button"
                 data-bs-toggle="dropdown"
