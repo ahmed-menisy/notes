@@ -102,11 +102,10 @@ export class HomeComponent implements OnInit {
         if (response.message === 'success') {
           this.msgData = '';
           this.notesList = response.Notes;
-        }else if (response.message === 'no notes found') {
+        } else if (response.message === 'no notes found') {
           this.msgData = 'no notes found';
-          this.notesList = []
-        }
-         else {
+          this.notesList = [];
+        } else {
           this.notesList = response.Notes;
           this.msgData = response.message;
         }
@@ -136,7 +135,7 @@ export class HomeComponent implements OnInit {
         this._note.deleteNote(objectDelete).subscribe({
           next: (response) => {
             console.log(response);
-            
+
             this.getUserNotes();
           },
           complete: () => {
@@ -221,8 +220,8 @@ export class HomeComponent implements OnInit {
   }
 
   // Track By Array
-  notes(index: number, note: any): number {
-    return note.index;
+  notes(index: number, note: any): string {
+    return note.title;
   }
   // Delete All Data
   deleteAll(): void {
