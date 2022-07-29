@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   addOrUpdate: boolean = true;
   curentNoteId!: string;
   msgData!: string;
-  termSearch:string = ''
+  termSearch: string = '';
   // ------------------ Note Form
   noteForm: FormGroup = new FormGroup({
     title: new FormControl(null, [Validators.required]),
@@ -102,7 +102,11 @@ export class HomeComponent implements OnInit {
         if (response.message === 'success') {
           this.msgData = '';
           this.notesList = response.Notes;
-        } else {
+        }else if (response.message === 'no notes found') {
+          this.msgData = 'no notes found';
+          this.notesList = []
+        }
+         else {
           this.notesList = response.Notes;
           this.msgData = response.message;
         }
@@ -132,6 +136,7 @@ export class HomeComponent implements OnInit {
         this._note.deleteNote(objectDelete).subscribe({
           next: (response) => {
             console.log(response);
+            
             this.getUserNotes();
           },
           complete: () => {
@@ -199,8 +204,8 @@ export class HomeComponent implements OnInit {
             icon: 'success',
             title: 'Your Note has been Updated',
             showConfirmButton: false,
-            timer: 1500
-          })
+            timer: 1500,
+          });
           this.getUserNotes();
           this.noteForm.reset();
           $('#addNoteModal').modal('hide');
@@ -237,7 +242,7 @@ export class HomeComponent implements OnInit {
           },
         });
         this.notesList = [];
-        this.msgData = 'no notes found'
+        this.msgData = 'no notes found';
       }
     });
   }

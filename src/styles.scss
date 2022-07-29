@@ -19,6 +19,8 @@ $fontTaj: "Tajawal", sans-serif;
 }
 body {
   min-height: 100vh;
+  perspective: 1200px;
+  transform-style: preserve-3d;
  
   background-color: $mainColor;
   color: #fff;
